@@ -13,7 +13,6 @@ pipeline {
             }
             steps {
                 powershell '''
-                    $ErrorActionPreference = "Stop"
                     Get-ChildItem -Force
 
                     nvs use artifactory/25.8.1/x64
