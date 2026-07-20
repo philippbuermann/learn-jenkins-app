@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "${env.PATH};C:\\ProgramData\\nvs\\artifactory\\25.8.1\\x64"
+    }
 
     stages {
         stage('Build') {
@@ -14,7 +17,6 @@ pipeline {
             steps {
                 sh '''
                     ls -la
-                    apk add --no-cache nodejs npm
                     node --version
                     npm --version
                     npm ci
