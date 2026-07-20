@@ -12,14 +12,16 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                    ls -la
+                powershell '''
+                    $ErrorActionPreference = "Stop"
+                    Get-ChildItem -Force
+
                     nvs use artifactory/25.8.1/x64
                     node --version
                     npm --version
                     npm ci
                     npm run build
-                    ls -la                
+                    Get-ChildItem -Force
                 '''
             }
         }
