@@ -12,15 +12,14 @@ pipeline {
                 }
             }
             steps {
-                powershell '''
-                    Get-ChildItem -Force
-
+                sh '''
+                    ls -la
                     nvs use artifactory/25.8.1/x64
                     node --version
                     npm --version
                     npm ci
                     npm run build
-                    Get-ChildItem -Force
+                    ls -la
                 '''
             }
         }
