@@ -12,6 +12,7 @@ pipeline {
             environment {
                 npm_config_cache = '/tmp/.npm-cache'
                 npm_config_strict_ssl = 'false'
+                NODE_TLS_REJECT_UNAUTHORIZED = '0'
             }
             steps {
                 sh '''
@@ -19,7 +20,7 @@ pipeline {
                     node --version
                     npm --version
                     rm -rf node_modules
-                    npm ci
+                    npm ci || (cat /tmp/.npm-cache/_logs/*.log && false)
                     npm run build
                     ls -la
                 '''
