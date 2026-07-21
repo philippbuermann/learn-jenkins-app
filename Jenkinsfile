@@ -20,10 +20,9 @@ pipeline {
                     node --version
                     npm --version
                     rm -rf node_modules
-                    npm ci 2>&1 || true
-                    // echo "=== NPM DEBUG LOGS ==="
-                    // cat /tmp/.npm-cache/_logs/*.log 2>/dev/null || echo "No log files found"
-                    // echo "=== END NPM DEBUG LOGS ==="
+                    npm ci
+                    npm run build
+                    ls -la
                 '''
             }
         }
